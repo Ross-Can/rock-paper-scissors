@@ -1,6 +1,7 @@
 # rock-paper-scissors
 This is a bit of practice with javascript and DOM manipulation. <br>
-Try to beat the computer in rock, paper, scissors if you are bored :)
+Try to beat the computer in rock, paper, scissors if you are bored :) <br>
+https://ross-can.github.io/rock-paper-scissors/
 
 <hr>
 
