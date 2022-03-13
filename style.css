@@ -1,0 +1,34 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    height: 100%;
+    width: 100%;
+}
+
+.choices{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75%;
+    margin: auto;
+}
+
+.info{
+    text-align: center;
+}
+
+.playerControls{
+    display: flex;
+    justify-content: space-between;
+    width: 75%;
+    margin: auto;
+}
+
+.playerControls button{
+    width: 25%;
+    height: 25px;
+
+}

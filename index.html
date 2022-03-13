@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./style.css" />
-    <title>Rock, Paper, Scissors!</title>
-  </head>
-  <body>
-    <script src="./script.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>Rock, Paper, Scissors!</title>
+</head>
+
+<body>
+
+  <h1 class>ROCK, PAPER, SCISSORS</h1>
+  <h2 class="round"></h2>
+  <div class="choices">
+    <div class="info">
+      <h3 class="p-score"></h3>
+      <p class="player-choice">Choose a weapon.</p>
+    </div>
+    <div class="info">
+      <h3 class="c-score"></h3>
+      <p class="computer-choice">And the computer shall choose to fight back.</p>
+    </div>
+  </div>
+  <div class="results"></div>
+
+
+
+  <div class="playerControls">
+    <button data-key="rock">Rock</button>
+    <button data-key="paper">Paper</button>
+    <button data-key="scissors">Scissors</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>

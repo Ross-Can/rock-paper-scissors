@@ -1,7 +1,44 @@
 const ROUND_COUNT = 5;
 const WEAPONS = ["rock", "paper", "scissors"];
+const playerDisplay = document.querySelector('.player-choice');
+const computerDisplay = document.querySelector('.computer-choice');
 let computerScore = 0;
 let playerScore = 0;
+let round = 0;
+
+// Edits the html elements text content.
+// The first parameter is the elements class name.
+//The second is the string you want the text content to become 
+
+function editTxtCont(clasStr, toStr){
+    let elem = document.querySelector(clasStr);
+    elem.textContent = toStr;
+}
+
+/**
+ Starts round based on the text content of the html element
+ that calls it. Displays results of the match and updates game 
+ screen for the next round */
+function roundStart(){
+    let playerChoice = this.textContent;
+    let computerChoice = computerPlay();
+    let result = playRound(playerChoice, computerChoice);
+
+    editTxtCont(".player-choice", "You chose " + playerChoice)
+    editTxtCont(".computer-choice", "The computer chose " + computerChoice)
+    editTxtCont(".results", result)
+    updateGame();
+}
+
+
+let addListener = button => {
+    button.addEventListener('click', roundStart);
+}
+
+const playerBtns = document.querySelectorAll(`button`);
+playerBtns.forEach(addListener);
+
+
 
 //Returns Rock,paper or scissors string randomly 
 function computerPlay() {
@@ -23,13 +60,6 @@ function playRound(playerSelection, computerSelection) {
     let playerChoice = WEAPONS.indexOf(playerSelection);
     let computerChoice = WEAPONS.indexOf(computerSelection);
 
-    //Ensures correct input from user
-    let newAnswer;
-    while(playerChoice == -1){
-        newAnswer = prompt("Please enter either 'Rock', 'Paper' or 'Scissors':").toLowerCase();
-        playerChoice = WEAPONS.indexOf(newAnswer);
-    }
-
     return decideWinner(playerChoice,computerChoice);
 
 }
@@ -40,6 +70,7 @@ function playRound(playerSelection, computerSelection) {
 //This turns the array into a circular list with the logic that:
 // If the computer has a weapon one slot lower than the player choice the player wins.
 function decideWinner(playerChoice,computerChoice){
+    console.log("You chose:", WEAPONS[playerChoice]);
     console.log("Computer Chose:", WEAPONS[computerChoice]);
 
      if((playerChoice == 0 && computerChoice == 2) || computerChoice == playerChoice - 1){
@@ -52,30 +83,50 @@ function decideWinner(playerChoice,computerChoice){
     }
 }
 
+/**
+ * Updates game screen. Displays the current score for players.
+ * Increase round and checks if the game is finished
+ */
 
-function game(){
+function updateGame(){
 
-    let playerSelection;
-    let computerSelection;
-
-    for(let currRound = 0; currRound < ROUND_COUNT; currRound++){
-        playerSelection = prompt(`ROUND ${currRound+1}/${ROUND_COUNT} - Rock, Paper or Scissors:`);
-        computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-        
-        if(playerScore == 3 || computerScore == 3){
-            console.log(displayWinner());
-            return;
-        }
+    round++;
+    editTxtCont(".p-score", playerScore)
+    editTxtCont(".c-score", computerScore)
+   
+    if(round > 5 || playerScore == 3 || computerScore == 3){
+      endGame();
+      return;
     }
-
-     console.log(displayWinner());
+    
+  
+    editTxtCont(".round", `Round ${round}/5`);
 }
+
+
+/**
+ * Puts game at end scene. Removes buttons, changes text content and displays
+ * the winner.
+ */
+function endGame(){
+    editTxtCont(".round","Game Over");
+    editTxtCont(".player-choice","");
+    editTxtCont(".computer-choice","");
+    editTxtCont(".results", displayWinner());
+
+    playerBtns.forEach((button) =>{
+        button.style.display ="none";
+    });
+}
+
+/**
+ * Returns the winner of the match which is the player with the most points
+ */
 
 function displayWinner(){
     if (playerScore == computerScore) return "You tied with the computer...congrats?"
     return playerScore > computerScore ? "Congrats You Won The Gane!": "You lost the game. Maybe next Time"
 }
 
-game();
+
 
