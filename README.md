@@ -9,7 +9,7 @@ https://ross-can.github.io/rock-paper-scissors/
 1. Choose rock paper or scissors. 
 2. If your weapon of choice is stronger than the computers randomly picked choice YOU WIN. 
 3. The goal is to be a round winner 3 out of 5 times. 
-4. Can you up to the challenge? ......you are, trust me. 
+4. Are you up to the challenge? ......you are, trust me. 
 
 <hr>
 
